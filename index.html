@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Etch-A-Sketch</title>
+        <meta charset="UTF-8">
+        <script src="./script.js" defer></script>
+        <link rel="stylesheet" href="./style.css"></style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="main">
+            <h1>Etch-A-Sketch</h1>
+            <div id="grid-container"></div>
+            <div id="ui-container">
+                <div id="left-ui">
+                    <div id="change-grid-size-container">
+                        <p class="button-description">Change grid size</p><input type="range" id="grid-size" min="1" max="100" value="50">
+                    </div>
+                    <div id="pen-mode-container"><p class="button-description">Pen mode</p><button id="pen-mode-btn">MODE</button></div>
+                </div>
+                <div id="right-ui">
+                    <button id="clear-grid-btn">Clear grid</button>
+                </div>
+            </div>
+        </div>
+        <footer><div id="footer-text">Made with love by <a href="https://github.com/twentysixhugs">twentysixhugs</a> :3</div></footer>
+    </body>
+</html>
