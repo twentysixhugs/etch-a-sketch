@@ -62,7 +62,6 @@ h1 {
     0 0 100px rgb(0, 119, 255),
     0 0 150px rgb(0, 119, 255); */
     animation: pulsateHeader 5s infinite alternate; 
-    
 }
 
 #grid-container {
