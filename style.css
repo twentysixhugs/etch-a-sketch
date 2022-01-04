@@ -31,7 +31,7 @@ footer {
     color: white;
     text-shadow:
     0 0 20px #fff;
-    /* animation: pulsateHeader 5s infinite alternate; */
+    /* animation: pulsate 5s infinite alternate; */
     font-weight: bold;
     font-size: 18px;
 }
@@ -46,7 +46,9 @@ h1 {
     margin: 40px;
     color: whitesmoke;
     font-size: 42px;
-    /* text-shadow:
+    /* -webkit-animation: pulsate 5s infinite alternate;
+    -moz-animation: pulsate 5s infinite alternate; */
+    text-shadow:
     0 0 4px #fff,
     0 0 11px #fff,
     0 0 19px #fff,
@@ -54,8 +56,7 @@ h1 {
     0 0 80px rgb(0, 119, 255),
     0 0 90px rgb(0, 119, 255),
     0 0 100px rgb(0, 119, 255),
-    0 0 150px rgb(0, 119, 255); */
-    animation: pulsateHeader 5s infinite alternate; 
+    0 0 150px rgb(0, 119, 255);
 }
 
 #grid-container {
@@ -65,15 +66,18 @@ h1 {
     margin-bottom: 10px;
     background-color: inherit;
     border-radius: 5px;
-    box-shadow: -5px -5px 5px grey, 5px 5px 5px grey;
+    box-shadow: 0 0 50px rgb(116, 116, 116);
     display: grid;
     background-color: white;
 
 }
 
-.square-div {
+#grid-container > * {
+    /* height: 100%; */
+    background-color: white;
     transition: all 0.5s;
 }
+
 
 #ui-container {
     display: flex;
@@ -86,19 +90,15 @@ h1 {
     display: flex;
     gap: 10px;
     font-size: 20px;
-    animation: pulsateHeader 5s infinite alternate;
     font-weight: bold;
+    text-shadow:
+    0 0 20px #fff;
 }
+
 
 #pen-mode-container {
     display: flex;
     gap: 8px;
-}
-
-#change-grid-size-container, #pen-mode-main {
-    /* display: flex;
-    flex-direction: column;
-    gap: 5px; */
 }
 
 #grid-size {
@@ -145,6 +145,7 @@ h1 {
 
 .button-description {
     margin-bottom: 0;
+    /* animation: pulsate 5s infinite alternate; */
 }
 
 a:visited, a:link {
@@ -167,7 +168,7 @@ input[type=range]::-moz-range-track {
     border-radius: 3px;
 }
 
-input[type=range]::-moz-range-track {
+#grid-size::-ms-track {
     width: 100%;
     height: 4px;
     cursor: pointer;
@@ -176,16 +177,8 @@ input[type=range]::-moz-range-track {
     border-radius: 3px;
 }
 
-input[type=range]::-ms-track {
-    width: 100%;
-    height: 4px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #020022;
-    background: #1b2f74;
-    border-radius: 3px;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
+#grid-size::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
     width: 100%;
     height: 4px;
     cursor: pointer;
@@ -195,6 +188,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 input[type=range]::-moz-range-thumb {
+    -moz-appearance: none;
     border: 2px solid #839de5;
     height: 23px;
     width: 22px;
@@ -203,7 +197,21 @@ input[type=range]::-moz-range-thumb {
     cursor: pointer;
 }
 
-input[type=range]::-webkit-slider-thumb {
+#grid-size::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 2px solid #839de5;
+    height: 23px;
+    width: 22px;
+    border-radius: 23px;
+    background: #435296;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
+#grid-size::-ms-thumb{
+    -moz-appearance: none;
+    -webkit-appearance: none;
     border: 2px solid #839de5;
     height: 23px;
     width: 22px;
@@ -211,66 +219,3 @@ input[type=range]::-webkit-slider-thumb {
     background: #435296;
     cursor: pointer;
 }
-
-input[type=range]::-ms-thumb {
-    border: 2px solid #839de5;
-    height: 23px;
-    width: 22px;
-    border-radius: 23px;
-    background: #435296;
-    cursor: pointer;
-}
-
-@keyframes pulsate {
-    100% {
-      /* Larger blur radius */
-      text-shadow:
-        0 0 4px #fff,
-        0 0 11px #fff,
-        0 0 19px #fff,
-        0 0 40px rgb(0, 119, 255),
-        0 0 80px rgb(0, 119, 255),
-        0 0 90px rgb(0, 119, 255),
-        0 0 100px rgb(0, 119, 255),
-        0 0 150px rgb(0, 119, 255);
-    }
-    0% {
-      /* Smaller blur radius */
-      text-shadow:
-        0 0 2px #fff,
-        0 0 4px #fff,
-        0 0 6px #fff,
-        0 0 10px rgb(255, 230, 0),
-        0 0 45px rgb(255, 230, 0),
-        0 0 55px rgb(255, 230, 0),
-        0 0 70px rgb(255, 230, 0),
-        0 0 80px rgb(255, 230, 0);
-    }
-  }
-
-
-    /*TRY TO REPLACE WITH YELLOW*/
-  @keyframes pulsateHeader {
-    100% {
-      /* Larger blur radius */
-      text-shadow:
-        0 0 4px #fff,
-        0 0 11px #fff,
-        0 0 19px #fff,
-        0 0 40px rgb(0, 119, 255),
-        0 0 80px rgb(0, 119, 255),
-        0 0 90px rgb(0, 119, 255),
-        0 0 100px rgb(0, 119, 255),
-        0 0 150px rgb(0, 119, 255);
-    }
-    0% {
-      /* Smaller blur radius */
-      text-shadow:
-        0 0 4px #fff,
-        0 0 11px #fff,
-        0 0 19px #fff,
-        0 0 40px rgb(0, 119, 255),
-        0 0 100px rgb(0, 119, 255),
-        0 0 150px rgb(0, 119, 255);
-    }
-  }
