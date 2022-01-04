@@ -78,7 +78,6 @@ function setPenMode(penMode, reload=true) {
         penModeContainer.removeChild(colorInput);
     }
     
-
     let eventHandler  = function(e) {
         if (penMode === "Black") {
             changeSquareDivColor(e, "black");
