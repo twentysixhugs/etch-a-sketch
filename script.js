@@ -3,6 +3,7 @@ let firstLoad = true;
 //grid
 const gridContainer = document.querySelector('#grid-container');
 
+
 //input and buttons
 const gridSize = document.querySelector('#grid-size');
 gridSize.value = 50; //set initial grid size for dragger
@@ -46,6 +47,13 @@ colorInput.addEventListener('change', () => {
 function replaceGrid() {
     removeGrid();
     createGrid();
+
+    const squareDivs = document.querySelectorAll(".square-div");
+
+    squareDivs.forEach(squareDiv => {
+        squareDiv.addEventListener("mouseover", getAndReplaceDivColor);
+    });
+    
     setPenMode(penModes[penMode]);
 }
 
@@ -77,42 +85,44 @@ function setPenMode(penMode, reload=true) {
     if (penMode === "Black" && !firstLoad && !reload) {
         penModeContainer.removeChild(colorInput);
     }
-    
-    let eventHandler  = function(e) {
-        if (penMode === "Black") {
-            changeSquareDivColor(e, "black");
-        }
-        if (penMode === "Random color") {
-            let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16); //get random value and convert it to base 16
-            changeSquareDivColor(e, randomColor);
-        }
-        if (penMode === "Pick color") {
-            changeSquareDivColor(e, color);
-        }
-        if (penMode === "Eraser") {
-            changeSquareDivColor(e, "white");
-        }
-    }
 
-    if (!firstLoad) {
-        for (let i = 0; i < gridSize.value * gridSize.value; i++) {
-            const squareDiv = document.querySelector(".square-div");
-            squareDiv.removeEventListener("mouseover", eventHandler);
-        }
-    }
+    // if (!firstLoad) {
+    //     for (let i = 0; i < gridSize.value * gridSize.value; i++) {
+    //         const squareDiv = document.querySelector(".square-div");
+    //         squareDiv.removeEventListener("mouseover", getAndReplaceDivColor);
+    //     }
+    // }
     firstLoad = false;
+}
 
-    const squareDivs = document.querySelectorAll(".square-div");
+function getAndReplaceDivColor(e) {
 
-    squareDivs.forEach(squareDiv => {
-        squareDiv.addEventListener("mouseover", eventHandler);
-    })
+    //
+
+    if (penModes[penMode] === "Black") {
+        //changeSquareDivColor(e, "black");
+        this.style.backgroundColor = "black";
+    }
+    else if (penModes[penMode] === "Random color") {
+        let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16); //get random value and convert it to base 16
+        changeSquareDivColor(e, randomColor);
+    }
+    else if (penModes[penMode] === "Pick color") {
+        changeSquareDivColor(e, color);
+    }
+    else if (penModes[penMode] === "Eraser") {
+        changeSquareDivColor(e, "white");
+    }
 }
 
 function main() {
     createGrid();
     setPenMode(penModes[penMode], false);
-    //create help!!! practice doing such things!!!
+    const squareDivs = document.querySelectorAll(".square-div");
+
+    squareDivs.forEach(squareDiv => {
+        squareDiv.addEventListener("mouseover", getAndReplaceDivColor);
+    });
 }
 
 window.onload = () => main();
