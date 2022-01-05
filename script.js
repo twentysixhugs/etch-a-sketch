@@ -43,7 +43,9 @@ colorInput.addEventListener('change', () => {
     color = colorInput.value;
 })
 
+
 //grid manipulation functions
+
 function replaceGrid() {
     removeGrid();
     createGrid();
@@ -74,6 +76,12 @@ function createGrid() {
 
 function changeSquareDivColor(e, color) {
     e.target.style.backgroundColor = color;
+    e.target.style.border = "none";
+
+    if (penModes[penMode] === "Eraser") {
+        e.target.style.borderTop = "1px solid rgb(243, 243, 243)";
+        e.target.style.borderRight = "1px solid rgb(243, 243, 243)";
+    }
 }
 
 //other
@@ -97,11 +105,8 @@ function setPenMode(penMode, reload=true) {
 
 function getAndReplaceDivColor(e) {
 
-    //
-
     if (penModes[penMode] === "Black") {
-        //changeSquareDivColor(e, "black");
-        this.style.backgroundColor = "black";
+        changeSquareDivColor(e, "black");
     }
     else if (penModes[penMode] === "Random color") {
         let randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16); //get random value and convert it to base 16
