@@ -6,16 +6,17 @@ const gridContainer = document.querySelector('#grid-container');
 
 //input and buttons
 const gridSize = document.querySelector('#grid-size');
-gridSize.value = 50; //set initial grid size for dragger
-
+gridSize.value = 50; //set initial grid size for scrollbar
 gridSize.addEventListener('change', replaceGrid);
 
+
 let penModes = ["Black", "Random color", "Pick color", "Eraser"];
-let penMode = 0; //this value will vary from 0 to 2 on click. 0 is default black
+let penMode = 0; //Black is default
 
 const penModeBtn = document.querySelector("#pen-mode-btn");
+
+//change what we will select from penModes array
 penModeBtn.addEventListener("click", () => {
-    /*change what we will select from penModes array*/
     if (penMode < 3)
         penMode++; //increment if it hasn't reached the last option (the third one) yet
     else
@@ -25,10 +26,10 @@ penModeBtn.addEventListener("click", () => {
     setPenMode(penModes[penMode], false);
 });
 
+
 const penModeContainer = document.querySelector("#pen-mode-container");
 
 const clearGridBtn = document.querySelector("#clear-grid-btn");
-
 clearGridBtn.addEventListener("click", replaceGrid);
 
 
@@ -44,7 +45,7 @@ colorInput.addEventListener('change', () => {
 })
 
 
-//grid manipulation functions
+//Grid manipulation
 
 function replaceGrid() {
     removeGrid();
@@ -70,6 +71,7 @@ function createGrid() {
     for (let i = 0; i < gridSize.value * gridSize.value; i++) {
         const squareDiv = document.createElement("div");
         squareDiv.setAttribute('class', 'square-div');
+
         gridContainer.appendChild(squareDiv);
     }
 }
@@ -84,7 +86,8 @@ function changeSquareDivColor(e, color) {
     }
 }
 
-//other
+
+//Color manipulation
 
 function setPenMode(penMode, reload=true) {
     if (penMode === "Pick color") {
@@ -94,17 +97,10 @@ function setPenMode(penMode, reload=true) {
         penModeContainer.removeChild(colorInput);
     }
 
-    // if (!firstLoad) {
-    //     for (let i = 0; i < gridSize.value * gridSize.value; i++) {
-    //         const squareDiv = document.querySelector(".square-div");
-    //         squareDiv.removeEventListener("mouseover", getAndReplaceDivColor);
-    //     }
-    // }
     firstLoad = false;
 }
 
 function getAndReplaceDivColor(e) {
-
     if (penModes[penMode] === "Black") {
         changeSquareDivColor(e, "black");
     }
@@ -119,6 +115,9 @@ function getAndReplaceDivColor(e) {
         changeSquareDivColor(e, "white");
     }
 }
+
+
+//Entry point
 
 function main() {
     createGrid();
